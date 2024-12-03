@@ -1,24 +1,24 @@
 #include <stdio.h>
 #include <string.h>
 
-#define TAMANHO_CAMPO 4
-#define NUM_BARCOS 4
+#define CAMPO 4
+#define BARCOS 4
 #define JOGADAS 4
 
 // Função para inicializar o campo de jogo
-void inicializar_campo(int campo[TAMANHO_CAMPO][TAMANHO_CAMPO]) {
-    for (int i = 0; i < TAMANHO_CAMPO; i++) {
-        for (int j = 0; j < TAMANHO_CAMPO; j++) {
+void inicializar_campo(int campo[CAMPO][CAMPO]) {
+    for (int i = 0; i < CAMPO; i++) {
+        for (int j = 0; j < CAMPO; j++) {
             campo[i][j] = 0; // 0 representa espaço vazio
         }
     }
 }
 
 // Função para exibir o campo
-void exibir_campo(int campo[TAMANHO_CAMPO][TAMANHO_CAMPO]) {
+void exibir_campo(int campo[CAMPO][CAMPO]) {
     printf("\nCampo de jogo:\n");
-    for (int i = 0; i < TAMANHO_CAMPO; i++) {
-        for (int j = 0; j < TAMANHO_CAMPO; j++) {
+    for (int i = 0; i < CAMPO; i++) {
+        for (int j = 0; j < CAMPO; j++) {
             printf("%d ", campo[i][j]);
         }
         printf("\n");
@@ -26,15 +26,15 @@ void exibir_campo(int campo[TAMANHO_CAMPO][TAMANHO_CAMPO]) {
 }
 
 // Função para posicionar barcos no campo
-void posicionar_barcos(int campo[TAMANHO_CAMPO][TAMANHO_CAMPO], char *jogador) {
+void posicionar_barcos(int campo[CAMPO][CAMPO], char *jogador) {
     int x, y, valor_barco;
     printf("\n%s, posicione seus barcos (4 no total):\n", jogador);
-    for (int i = 0; i < NUM_BARCOS; i++) {
+    for (int i = 0; i < BARCOS; i++) {
         do {
             printf("Posicione o barco %d (valor entre 1 e 4):\n", i + 1);
             printf("Informe linha (0-3) e coluna (0-3): ");
             scanf("%d %d", &x, &y);
-            if (x < 0 || x >= TAMANHO_CAMPO || y < 0 || y >= TAMANHO_CAMPO || campo[x][y] != 0) {
+            if (x < 0 || x >= CAMPO || y < 0 || y >= CAMPO || campo[x][y] != 0) {
                 printf("Posição inválida ou já ocupada! Tente novamente.\n");
             } else {
                 printf("Informe o valor do barco (1-4): ");
@@ -51,13 +51,13 @@ void posicionar_barcos(int campo[TAMANHO_CAMPO][TAMANHO_CAMPO], char *jogador) {
 }
 
 // Função para processar jogadas
-int realizar_jogadas(int campo[TAMANHO_CAMPO][TAMANHO_CAMPO], char *jogador) {
+int realizar_jogadas(int campo[CAMPO][CAMPO], char *jogador) {
     int x, y, pontos = 0;
     printf("\n%s, realize suas 4 jogadas:\n", jogador);
     for (int i = 0; i < JOGADAS; i++) {
         printf("Jogada %d - Informe linha (0-3) e coluna (0-3): ", i + 1);
         scanf("%d %d", &x, &y);
-        if (x < 0 || x >= TAMANHO_CAMPO || y < 0 || y >= TAMANHO_CAMPO) {
+        if (x < 0 || x >= CAMPO || y < 0 || y >= CAMPO) {
             printf("Jogada inválida! Posição fora do campo. Sem pontos.\n");
         } else if (campo[x][y] > 0) {
             printf("Acertou! Barco de valor %d destruído.\n", campo[x][y]);
@@ -72,7 +72,7 @@ int realizar_jogadas(int campo[TAMANHO_CAMPO][TAMANHO_CAMPO], char *jogador) {
 
 int main() {
     char jogador1[50], jogador2[50];
-    int campo1[TAMANHO_CAMPO][TAMANHO_CAMPO], campo2[TAMANHO_CAMPO][TAMANHO_CAMPO];
+    int campo1[CAMPO][CAMPO], campo2[CAMPO][CAMPO];
     int pontos1, pontos2;
 
     // Leitura dos apelidos dos jogadores
